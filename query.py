@@ -16,7 +16,7 @@ db_cred = {
     'pass': my_password,    # DATABASE PASSWORD 
     'host': '127.0.0.1:3306',    # DATABASE HOSTNAME 
     'name': 'sakila'        # DATABASE NAME 
-} 
+}
 
 db_uri = f"mysql+pymysql://{db_cred['user']}:{db_cred['pass']}@{db_cred['host']}/{db_cred['name']}"
 
@@ -26,6 +26,14 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
  
 # Creating an SQLAlchemy instance
 db = SQLAlchemy(app)
+
+@app.route('/')
+def home():
+    json = {
+        "message": "Welcome to query homepage!"
+    }
+
+    return json
 
 # A decorator used to tell the application 
 # which URL is associated function 
